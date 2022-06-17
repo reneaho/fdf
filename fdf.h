@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raho <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: raho <raho@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 18:43:49 by raho              #+#    #+#             */
-/*   Updated: 2022/05/26 18:30:45 by raho             ###   ########.fr       */
+/*   Created: 2022/06/17 16:15:26 by raho              #+#    #+#             */
+/*   Updated: 2022/06/17 16:16:44 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,13 @@
 # define MAC_UP 126
 # define MAC_RIGHT 124
 # define MAC_DOWN 125
-# define MAC_ENTER 036
+# define MAC_ENTER 36
 # define MAC_ESC 53
 
 # include "libft/libft.h"
 # include "mlx.h"
 # include <fcntl.h>
 # include <math.h>
-# include <stdio.h>
 
 typedef struct s_node
 {
@@ -72,9 +71,9 @@ typedef struct s_node
 	void	*win_ptr;
 	void	*img_ptr;
 	char	*img_addr;
-	int	bits_per_pixel;
-	int	size_line;
-	int	endian;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
 	char	*file;
 	int		height;
 	int		width;
@@ -93,16 +92,16 @@ typedef struct s_node
 	float	x2;
 	float	y2;
 	float	xyz[3];
-	int	alpha;
-	int	beta;
-	int	gamma;
-	int	tile_width;
-	int	tile_height;
-	int	tile_depth;
-	int	map_position_w;
-	int	map_position_h;
-	int color;
-	int	last_key;
+	int		alpha;
+	int		beta;
+	int		gamma;
+	int		tile_width;
+	int		tile_height;
+	int		tile_depth;
+	int		map_position_w;
+	int		map_position_h;
+	int		color;
+	int		last_key;
 }		t_node;
 
 void	initialize_struct(t_node *tool, char *file_name);
@@ -110,8 +109,8 @@ int		open_map(t_node *tool);
 void	close_map(int fd, t_node *tool);
 int		handle_input(int fd, t_node *tool);
 int		check_lines(t_node *tool, int fd, char *line);
-int	check_content(t_node *tool);
-int	check_atoi_overflow(char *str);
+int		check_content(t_node *tool);
+int		check_atoi_overflow(char *str);
 void	do_events(t_node *tool);
 void	draw_line(t_node *tool);
 void	draw_map(t_node *tool);

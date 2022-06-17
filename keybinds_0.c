@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keybinds_0.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: raho <raho@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/17 16:30:31 by raho              #+#    #+#             */
+/*   Updated: 2022/06/17 16:40:59 by raho             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 static void	close_program(t_node *tool)
@@ -8,7 +20,7 @@ static void	close_program(t_node *tool)
 	exit (0);
 }
 
-void erase_map(t_node *tool)
+void	erase_map(t_node *tool)
 {
 	int	x;
 	int	y;
@@ -27,47 +39,47 @@ void erase_map(t_node *tool)
 	}
 }
 
-static void    move_map(t_node *tool)
+static void	move_map(t_node *tool)
 {
-    erase_map(tool);
-    if ((tool->last_key == LINUX_LEFT || tool->last_key == MAC_LEFT) && \
-                (tool->map_position_w > -2147483580))
-			tool->map_position_w = tool->map_position_w - 50;
+	erase_map(tool);
+	if ((tool->last_key == LINUX_LEFT || tool->last_key == MAC_LEFT) && \
+				(tool->map_position_w > -2147483580))
+		tool->map_position_w = tool->map_position_w - 50;
 	if ((tool->last_key == LINUX_RIGHT || tool->last_key == MAC_RIGHT) && \
-                (tool->map_position_w < 2147483580))
-			tool->map_position_w = tool->map_position_w + 50;
+				(tool->map_position_w < 2147483580))
+		tool->map_position_w = tool->map_position_w + 50;
 	if ((tool->last_key == LINUX_UP || tool->last_key == MAC_UP) && \
-                (tool->map_position_h > -2147483580))
-			tool->map_position_h = tool->map_position_h - 50;
+				(tool->map_position_h > -2147483580))
+		tool->map_position_h = tool->map_position_h - 50;
 	if ((tool->last_key == LINUX_DOWN || tool->last_key == MAC_DOWN) && \
-                (tool->map_position_h < 2147483580))
-			tool->map_position_h = tool->map_position_h + 50;
-    draw_map(tool);
+				(tool->map_position_h < 2147483580))
+		tool->map_position_h = tool->map_position_h + 50;
+	draw_map(tool);
 }
 
-static void    rotate_map(t_node *tool)
+static void	rotate_map(t_node *tool)
 {
-    erase_map(tool);
-    if ((tool->last_key == LINUX_A || tool->last_key == MAC_A) && \
-                (tool->beta > -2147483630))
-				tool->beta = tool->beta - 5;
-    if ((tool->last_key == LINUX_D || tool->last_key == MAC_D) && \
-                (tool->beta < 2147483630))
-				tool->beta = tool->beta + 5;
-    if ((tool->last_key == LINUX_W || tool->last_key == MAC_W) && \
-                (tool->gamma > -2147483630))
-       			tool->gamma = tool->gamma + 5;	
+	erase_map(tool);
+	if ((tool->last_key == LINUX_A || tool->last_key == MAC_A) && \
+				(tool->beta > -2147483630))
+		tool->beta = tool->beta - 5;
+	if ((tool->last_key == LINUX_D || tool->last_key == MAC_D) && \
+				(tool->beta < 2147483630))
+		tool->beta = tool->beta + 5;
+	if ((tool->last_key == LINUX_W || tool->last_key == MAC_W) && \
+				(tool->gamma > -2147483630))
+		tool->gamma = tool->gamma + 5;
 	if ((tool->last_key == LINUX_S || tool->last_key == MAC_S) && \
-		        (tool->gamma < 2147483630))
-				tool->gamma = tool->gamma - 5;
+				(tool->gamma < 2147483630))
+		tool->gamma = tool->gamma - 5;
 	if (tool->last_key == LINUX_Q || tool->last_key == MAC_Q)
 		tool->alpha = tool->alpha - 5;
 	if (tool->last_key == LINUX_E || tool->last_key == MAC_E)
 		tool->alpha = tool->alpha + 5;
-    draw_map(tool);
+	draw_map(tool);
 }
 
-void    keybinds_0(t_node *tool)
+void	keybinds_0(t_node *tool)
 {
 	if (tool->last_key == LINUX_ENTER || tool->last_key == MAC_ENTER)
 	{

@@ -1,16 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_line.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: raho <raho@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/17 16:05:05 by raho              #+#    #+#             */
+/*   Updated: 2022/06/17 16:10:01 by raho             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-static void positive_negative_undefined_slope_2(t_node *tool)
+static void	positive_negative_undefined_slope_2(t_node *tool)
 {
-    if (tool->slope < 1 && tool->y1 < tool->y2)
-        tool->y = tool->y + 1;
-    else
-        tool->y = tool->y - 1;
-    tool->parametric_value = tool->parametric_value + 2 * \
-                                        tool->deltay - 2 * tool->deltax;
+	if (tool->slope < 1 && tool->y1 < tool->y2)
+		tool->y = tool->y + 1;
+	else
+		tool->y = tool->y - 1;
+	tool->parametric_value = tool->parametric_value + 2 * \
+							tool->deltay - 2 * tool->deltax;
 }
 
-static void positive_negative_undefined_slope_1(t_node *tool)
+static void	positive_negative_undefined_slope_1(t_node *tool)
 {
 	if (tool->x1 > tool->x2)
 	{
@@ -30,27 +42,27 @@ static void positive_negative_undefined_slope_1(t_node *tool)
 	{
 		if (check_if_inside(tool->x, tool->y))
 			image_pixel_put(tool, (int)tool->x, (int)tool->y);
-        tool->x = tool->x + 1;
-        if (tool->parametric_value >= 0)
-            a2(tool);
+		tool->x = tool->x + 1;
+		if (tool->parametric_value >= 0)
+			positive_negative_undefined_slope_2(tool);
 		else
 			tool->parametric_value = tool->parametric_value + 2 * tool->deltay;
 	}
 }
 
-static void negative_slope_2(t_node *tool)
+static void	negative_slope_2(t_node *tool)
 {
-    if (tool->slope >= 1)
+	if (tool->slope >= 1)
 		tool->x = tool->x + 1;
 	else
 		tool->x = tool->x - 1;
 	tool->parametric_value = tool->parametric_value + 2 * \
-                                        tool->deltax - 2 * tool->deltay;
+							tool->deltax - 2 * tool->deltay;
 }
 
-static void negative_slope_1(t_node *tool)
+static void	negative_slope_1(t_node *tool)
 {
-    if (tool->y1 > tool->y2)
+	if (tool->y1 > tool->y2)
 	{
 		tool->temp = tool->x1;
 		tool->x1 = tool->x2;
@@ -59,7 +71,7 @@ static void negative_slope_1(t_node *tool)
 		tool->y1 = tool->y2;
 		tool->y2 = tool->temp;
 	}
-    tool->deltax = ft_fabs(tool->x2 - tool->x1);
+	tool->deltax = ft_fabs(tool->x2 - tool->x1);
 	tool->deltay = ft_fabs(tool->y2 - tool->y1);
 	tool->parametric_value = 2 * tool->deltay - tool->deltax;
 	tool->x = tool->x1;
@@ -70,10 +82,10 @@ static void negative_slope_1(t_node *tool)
 			image_pixel_put(tool, (int)tool->x, (int)tool->y);
 		tool->y = tool->y + 1;
 		if (tool->parametric_value >= 0)
-            b2(tool);
+			negative_slope_2(tool);
 		else
 			tool->parametric_value = tool->parametric_value + 2 * tool->deltax;
-    }
+	}
 }
 
 void	draw_line(t_node *tool)
@@ -88,7 +100,7 @@ void	draw_line(t_node *tool)
 	else
 		tool->slope = deltay / deltax;
 	if (ft_fabs(tool->slope) < 1)
-        positive_negative_undefined_slope_1(tool);
+		positive_negative_undefined_slope_1(tool);
 	if (ft_fabs(tool->slope) >= 1)
-        negative_slope_1(tool);
+		negative_slope_1(tool);
 }

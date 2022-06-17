@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file_checks.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: raho <raho@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/17 16:17:11 by raho              #+#    #+#             */
+/*   Updated: 2022/06/17 16:19:40 by raho             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 static int	count_words(char *str)
@@ -80,22 +92,26 @@ int	check_content(t_node *tool)
 	int	x;
 	int	y;
 
-    y = 0;
-    while (tool->char_matrix[y] != 0)
-    {
-        x = 0;
-        while (tool->char_matrix[y][x] != '\0')
-        {
-            if (((tool->char_matrix[y][x] != ' ' && tool->char_matrix[y][x] != '-' && \
-                (tool->char_matrix[y][x] < 48 || tool->char_matrix[y][x] > 57)) && \
-                tool->char_matrix[y][x] != '\n') || \
-                (tool->char_matrix[y][x] == '\n' && tool->char_matrix[y][x + 1] != '\0') || \
-				(tool->char_matrix[y][x] == '-' && (tool->char_matrix[y][x + 1] < 48 || \
-				tool->char_matrix[y][x + 1] > 57)))
-                return (-1);
-            x++;
-        }
-        y++;
-    }
-    return (0);
+	y = 0;
+	while (tool->char_matrix[y] != 0)
+	{
+		x = 0;
+		while (tool->char_matrix[y][x] != '\0')
+		{
+			if (((tool->char_matrix[y][x] != ' ' && \
+					tool->char_matrix[y][x] != '-' && \
+					(tool->char_matrix[y][x] < 48 || \
+					tool->char_matrix[y][x] > 57)) && \
+					tool->char_matrix[y][x] != '\n') || \
+					(tool->char_matrix[y][x] == '\n' && \
+					tool->char_matrix[y][x + 1] != '\0') || \
+					(tool->char_matrix[y][x] == '-' && \
+					(tool->char_matrix[y][x + 1] < 48 || \
+					tool->char_matrix[y][x + 1] > 57)))
+				return (-1);
+			x++;
+		}
+		y++;
+	}
+	return (0);
 }

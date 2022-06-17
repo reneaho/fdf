@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: raho <raho@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/17 16:10:26 by raho              #+#    #+#             */
+/*   Updated: 2022/06/17 16:14:11 by raho             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 static void	choose_color_right(t_node *tool, int map_x, int map_y)
@@ -21,7 +33,7 @@ static void	choose_color_right(t_node *tool, int map_x, int map_y)
 	else if (tool->int_matrix[map_y][map_x + 1] == 0)
 		tool->color = COLOR_NEUTRAL;
 	else
-		tool->color = COLOR_TRANSITION; 
+		tool->color = COLOR_TRANSITION;
 }
 
 static void	choose_color_down(t_node *tool, int map_x, int map_y)
@@ -48,7 +60,7 @@ static void	choose_color_down(t_node *tool, int map_x, int map_y)
 		tool->color = COLOR_TRANSITION;
 }
 
-static void draw_right(t_node *tool, int map_x, int map_y)
+static void	draw_right(t_node *tool, int map_x, int map_y)
 {
 	tool->xyz[0] = map_x;
 	tool->xyz[1] = map_y;
@@ -66,9 +78,9 @@ static void draw_right(t_node *tool, int map_x, int map_y)
 	draw_line(tool);
 }
 
-static void draw_down(t_node *tool, int map_x, int map_y)
+static void	draw_down(t_node *tool, int map_x, int map_y)
 {
-    tool->xyz[0] = map_x;
+	tool->xyz[0] = map_x;
 	tool->xyz[1] = map_y;
 	tool->xyz[2] = tool->int_matrix[map_y][map_x];
 	rotation_matrix(tool);
@@ -100,14 +112,14 @@ void	draw_map(t_node *tool)
 			while (map_x < tool->width)
 			{
 				if (map_x != tool->width - 1)
-        	        draw_right(tool, map_x, map_y);
+					draw_right(tool, map_x, map_y);
 				if (map_y != tool->height - 1)
-        	        draw_down(tool, map_x, map_y);
+					draw_down(tool, map_x, map_y);
 				map_x++;
 			}
 			map_y++;
 		}
 	}
 	mlx_put_image_to_window(tool->mlx_ptr, tool->win_ptr, \
-							tool->img_ptr, 0, 0);
+									tool->img_ptr, 0, 0);
 }
