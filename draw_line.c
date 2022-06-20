@@ -73,7 +73,7 @@ static void	negative_slope_1(t_node *tool)
 	}
 	tool->deltax = ft_fabs(tool->x2 - tool->x1);
 	tool->deltay = ft_fabs(tool->y2 - tool->y1);
-	tool->parametric_value = 2 * tool->deltay - tool->deltax;
+	tool->parametric_value = 2 * tool->deltax - tool->deltay;
 	tool->x = tool->x1;
 	tool->y = tool->y1;
 	while (tool->y <= tool->y2)

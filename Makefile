@@ -23,7 +23,7 @@ SRCS = main.c do_events.c free_all.c initialize_struct.c handle_input.c \
 		handle_file.c draw_line.c draw_map.c rotation_matrix.c keybinds_0.c \
 		keybinds_1.c draw_one.c image_pixel_put.c file_checks.c
 OBJS = $(SRCS:.c=.o)
-MLXLINK = -lmlx -framework OpenGL -framework Appkit
+MLXLINK = -lmlx -lXext -lX11
 
 all: $(NAME)
 

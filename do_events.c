@@ -38,7 +38,7 @@ int	key_press(int key, void *param)
 
 	tool = (t_node *)param;
 	tool->last_key = key;
-	ft_putnbr(key);
+	keybinds_0(tool);
 	return (0);
 }	
 
