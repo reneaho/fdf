@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:03:11 by raho              #+#    #+#             */
-/*   Updated: 2022/06/17 16:03:25 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/18 12:02:38 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void	print_keybinds(void)
 	ft_putendl("U - Decrease tile z");
 	ft_putendl("O - Increase tile z");
 	ft_putendl("J - Decrease tile x");
-	ft_putendl("I - Decrease tile y");
 	ft_putendl("L - Increase tile x");
+	ft_putendl("I - Decrease tile y");
 	ft_putendl("K - Increase tile y");
 	ft_putendl("ENTER - Resets the map");
 	ft_putendl("ESC - Quit the program");

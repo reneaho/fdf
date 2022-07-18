@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:15:26 by raho              #+#    #+#             */
-/*   Updated: 2022/06/17 16:16:44 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/18 12:34:32 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ typedef struct s_node
 	int		map_position_h;
 	int		color;
 	int		last_key;
-}		t_node;
+}			t_node;
 
 void	initialize_struct(t_node *tool, char *file_name);
 int		open_map(t_node *tool);
