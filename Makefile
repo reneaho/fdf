@@ -6,15 +6,15 @@
 #    By: raho <raho@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 18:17:08 by raho              #+#    #+#              #
-#    Updated: 2022/07/18 15:02:27 by raho             ###   ########.fr        #
+#    Updated: 2022/07/19 12:48:40 by raho             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-LIBFTLIB = ./libft -lft
-LIBFTINCL = ./libft
+LIB = libft/libft.a
+LIBFTINCL = libft/
 MLXLIB = /usr/local/lib
 MLXINCL = /usr/local/include
 FDFINCL = ./
@@ -26,19 +26,20 @@ MLXLINK = -lmlx -framework OpenGL -framework Appkit
 
 all: $(NAME)
 
-$(NAME):
-	cd libft; make all
-	$(CC) $(CFLAGS) -c $(SRCS)
-	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFTLIB) -I$(LIBFTINCL) -I$(MLXINCL) \
-	-I$(FDFINCL) $(MLXLINK) -o $(NAME)
+$(NAME): $(SRCS) $(LIB) $(LIBFTINCL)
+	$(CC) $(CFLAGS) $(SRCS) -c
+	$(CC) $(CFLAGS) $(OBJS) $(LIB) -I $(LIBFTINCL) -I $(MLXINCL) \
+	-I $(FDFINCL) $(MLXLINK) -o $(NAME)
+
+$(LIB):
+	make -C libft
 
 clean:
-	cd libft; make clean
+	make -C libft clean
 	rm -f $(OBJS)
 
 fclean: clean
-	cd libft; make fclean
+	make -C libft fclean
 	rm -f $(NAME)
 
 re: fclean all
-	cd libft; make re

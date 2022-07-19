@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:03:11 by raho              #+#    #+#             */
-/*   Updated: 2022/07/18 15:02:27 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/19 12:50:33 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	print_keybinds(void)
 	ft_putendl("W - Rotate map up");
 	ft_putendl("D - Rotate map right");
 	ft_putendl("S - Rotate map down");
+	ft_putendl("Q - Rotate map counterclockwise");
+	ft_putendl("E - Rotate map clockwise");
 	ft_putendl("U - Decrease tile z");
 	ft_putendl("O - Increase tile z");
 	ft_putendl("J - Decrease tile x");
