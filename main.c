@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:25:55 by raho              #+#    #+#             */
-/*   Updated: 2022/07/18 15:02:27 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/19 14:26:43 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	main(int argc, char *argv[])
 		if (result == -1)
 			ft_putendl("Bad map");
 		else
+		{
+			clamp_z(&tool);
 			do_events(&tool);
+		}
 		free_all(&tool);
 	}
 	else

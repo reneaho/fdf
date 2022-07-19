@@ -6,17 +6,17 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:15:26 by raho              #+#    #+#             */
-/*   Updated: 2022/07/18 15:02:27 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/19 15:28:52 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define WINDOW_SIZE_WIDTH 1900
-# define WINDOW_SIZE_HEIGHT 1300
-# define MAP_START_TILE_WIDTH 64
-# define MAP_START_TILE_HEIGHT 64
-# define MAP_START_TILE_DEPTH 10
+# define WINDOW_SIZE_WIDTH 1400
+# define WINDOW_SIZE_HEIGHT 1000
+# define MAP_START_TILE_WIDTH 32
+# define MAP_START_TILE_HEIGHT 32
+# define MAP_START_TILE_DEPTH 5
 # define MAP_START_POSITION_WIDTH 0
 # define MAP_START_POSITION_HEIGHT 0
 # define COLOR_NEUTRAL 0xFFFFFF
@@ -80,6 +80,8 @@ typedef struct s_node
 	int		width_check;
 	char	**char_matrix;
 	int		**int_matrix;
+	int		lowest;
+	int		highest;
 	float	x;
 	float	y;
 	float	deltax;
@@ -111,6 +113,7 @@ int		handle_input(int fd, t_node *tool);
 int		check_lines(t_node *tool, int fd, char *line);
 int		check_content(t_node *tool);
 int		check_atoi_overflow(char *str);
+void	clamp_z(t_node *tool);
 void	do_events(t_node *tool);
 void	draw_line(t_node *tool);
 void	draw_map(t_node *tool);

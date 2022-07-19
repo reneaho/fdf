@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:34:36 by raho              #+#    #+#             */
-/*   Updated: 2022/07/18 15:02:27 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/19 15:25:03 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@ static void	enlarge_map_z(t_node *tool)
 {
 	if ((tool->last_key == LINUX_U || tool->last_key == MAC_U) && \
 				(tool->tile_depth > -2147483630))
-		tool->tile_depth = tool->tile_depth - 10;
+	{
+		if (tool->tile_depth >= 5)
+			tool->tile_depth = tool->tile_depth - 5;
+	}
 	if ((tool->last_key == LINUX_O || tool->last_key == MAC_O) && \
 				(tool->tile_depth < 2147483630))
-		tool->tile_depth = tool->tile_depth + 10;
+		tool->tile_depth = tool->tile_depth + 5;
 }
 
 static void	enlarge_map_xyz(t_node *tool)
