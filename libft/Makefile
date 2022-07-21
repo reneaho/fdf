@@ -6,7 +6,7 @@
 #    By: raho <raho@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/04 18:25:17 by raho              #+#    #+#              #
-#    Updated: 2022/07/18 12:47:35 by raho             ###   ########.fr        #
+#    Updated: 2022/07/21 14:03:54 by raho             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,11 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 	ft_sqrtf.c ft_arrappchar.c ft_getnbr.c ft_fabs.c ft_split_whitespaces.c
 OBJS = $(SRCS:.c=.o)
 
+.PHONY: all clean fclean re
+
 all: $(NAME)
 
-$(NAME):
-	$(CC) $(CFLAGS) -c $(SRCS)
+$(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 clean:
