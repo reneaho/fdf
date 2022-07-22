@@ -6,13 +6,13 @@
 #    By: raho <raho@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 18:17:08 by raho              #+#    #+#              #
-#    Updated: 2022/07/21 14:01:05 by raho             ###   ########.fr        #
+#    Updated: 2022/07/22 20:34:06 by raho             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 LIB = libft/libft.a
 LIBFTINCL = libft/
 MLXLIB = /usr/local/lib
@@ -24,9 +24,11 @@ SRCS = main.c do_events.c free_all.c initialize_struct.c handle_input.c \
 OBJS = $(SRCS:.c=.o)
 MLXLINK = -lmlx -framework OpenGL -framework Appkit
 
+.PHONY: all clean fclean re
+
 all: $(NAME)
 
-$(NAME): $(LIB) $(OBJS) 
+$(NAME): $(LIB) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIB) -I $(LIBFTINCL) -I $(MLXINCL) \
 	-I $(FDFINCL) $(MLXLINK) -o $(NAME)
 

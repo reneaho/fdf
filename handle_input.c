@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:30:39 by raho              #+#    #+#             */
-/*   Updated: 2022/07/18 15:02:27 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/22 20:16:37 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ static void	create_char_matrix(t_node *tool)
 {
 	int	index;
 
-	tool->char_matrix = (char **)malloc(sizeof(char *) * (tool->height + 1));
+	tool->char_matrix = (char **)malloc(sizeof(char *) * tool->height);
 	if (tool->char_matrix == NULL)
-		exit (0);
+		error_exit_free(tool);
 	index = 0;
-	while (index < (tool->height + 1))
+	while (index < tool->height)
 	{
 		tool->char_matrix[index] = NULL;
 		index++;
@@ -29,11 +29,13 @@ static void	create_char_matrix(t_node *tool)
 
 static int	save_map(t_node *tool, int fd, char *line)
 {
-	int	gnl;
-	int	index;
+	int		gnl;
+	int		index;
 
 	index = 0;
 	gnl = get_next_line(fd, &line);
+	if (gnl == -1)
+		error_exit_free(tool);
 	if (line == NULL)
 		return (-1);
 	while (gnl > 0)
@@ -44,9 +46,13 @@ static int	save_map(t_node *tool, int fd, char *line)
 			free(line);
 			line = NULL;
 		}
+		if (tool->char_matrix[index] == NULL)
+			error_exit_free(tool);
 		index++;
 		gnl = get_next_line(fd, &line);
 	}
+	if (gnl == -1)
+		error_exit_free(tool);
 	return (gnl);
 }
 
@@ -55,7 +61,7 @@ static int	copy_matrix_to_int(t_node *tool, int cy, int iy)
 	int	cx;
 	int	ix;
 
-	while (tool->char_matrix[cy] != 0)
+	while (cy < tool->height)
 	{
 		cx = 0;
 		ix = 0;
@@ -83,13 +89,13 @@ static void	create_int_matrix(t_node *tool)
 
 	tool->int_matrix = (int **)malloc(sizeof(int *) * tool->height);
 	if (tool->int_matrix == NULL)
-		exit (0);
+		error_exit_free(tool);
 	index = 0;
 	while (index < tool->height)
 	{
 		tool->int_matrix[index] = (int *)malloc(sizeof(int) * tool->width);
 		if (tool->int_matrix == NULL)
-			exit (0);
+			error_exit_free(tool);
 		ft_bzero((int *)tool->int_matrix[index], tool->width);
 		index++;
 	}

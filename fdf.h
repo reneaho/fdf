@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:15:26 by raho              #+#    #+#             */
-/*   Updated: 2022/07/19 15:28:52 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/22 19:32:53 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	erase_map(t_node *tool);
 void	keybinds_0(t_node *tool);
 void	keybinds_1(t_node *tool);
 void	reinitialize_struct(t_node *tool);
+void	error_exit_free(t_node *tool);
 void	free_all(t_node *tool);
 
 #endif

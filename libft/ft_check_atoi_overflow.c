@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_check_atoi_overflow.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 19:58:31 by raho              #+#    #+#             */
-/*   Updated: 2021/11/24 21:23:39 by raho             ###   ########.fr       */
+/*   Created: 2022/07/22 19:27:09 by raho              #+#    #+#             */
+/*   Updated: 2022/07/22 19:27:22 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+int	check_atoi_overflow(char *str)
 {
-	int	index;
+	int		i;
+	long	res;
+	int		sign;
 
-	index = 0;
-	if (s)
+	i = 0;
+	res = 0;
+	sign = 1;
+	if (str[i] == '-')
 	{
-		while (s[index] != '\0')
-		{
-			(*f)(index, &s[index]);
-			index++;
-		}
+		sign = sign * -1;
+		i++;
 	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = res * 10 + (str[i] - '0');
+		i++;
+	}
+	if (res > 2147483647 && sign == 1)
+		return (-1);
+	if (res > 2147483648 && sign == -1)
+		return (-1);
+	return (0);
 }

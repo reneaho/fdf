@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:25:55 by raho              #+#    #+#             */
-/*   Updated: 2022/07/21 14:01:50 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/22 14:34:17 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char *argv[])
 		result = handle_input(fd, &tool);
 		close_map(fd, &tool);
 		if (result == -1)
-			ft_putendl("Bad map");
+			ft_putendl_fd("Bad map", 2);
 		else
 			do_events(&tool);
 		free_all(&tool);
