@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:25:55 by raho              #+#    #+#             */
-/*   Updated: 2022/07/22 14:34:17 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/25 12:37:07 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ int	main(int argc, char *argv[])
 		free_all(&tool);
 	}
 	else
-		ft_putendl("usage: ./fdf map_file");
+		ft_putendl_fd("usage: ./fdf map_file", 2);
 	return (0);
 }

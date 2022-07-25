@@ -6,13 +6,13 @@
 #    By: raho <raho@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 18:17:08 by raho              #+#    #+#              #
-#    Updated: 2022/07/22 20:34:06 by raho             ###   ########.fr        #
+#    Updated: 2022/07/25 12:41:46 by raho             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror
 LIB = libft/libft.a
 LIBFTINCL = libft/
 MLXLIB = /usr/local/lib

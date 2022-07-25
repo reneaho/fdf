@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 14:26:51 by raho              #+#    #+#             */
-/*   Updated: 2022/07/19 14:38:01 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/25 12:44:21 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	initialize_struct(t_node *tool, char *file_name)
 	tool->height = 0;
 	tool->width = 0;
 	tool->width_check = 0;
-	tool->lowest = 0;
-	tool->highest = 0;
 	tool->img_addr = NULL;
 	tool->bits_per_pixel = 0;
 	tool->size_line = 0;

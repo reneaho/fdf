@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:15:26 by raho              #+#    #+#             */
-/*   Updated: 2022/07/22 19:32:53 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/25 12:44:10 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ typedef struct s_node
 	int		width_check;
 	char	**char_matrix;
 	int		**int_matrix;
-	int		lowest;
-	int		highest;
 	float	x;
 	float	y;
 	float	deltax;

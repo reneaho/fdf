@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 14:04:56 by raho              #+#    #+#             */
-/*   Updated: 2022/07/22 20:22:01 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/25 13:04:26 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	free_all(t_node *tool)
 	index = 0;
 	if (tool->char_matrix)
 	{
-		while (index < tool->height)
+		while (index < tool->height && tool->char_matrix[index] != NULL)
 		{
 			free(tool->char_matrix[index]);
 			if (tool->int_matrix)

@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:30:39 by raho              #+#    #+#             */
-/*   Updated: 2022/07/22 20:16:37 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/25 13:21:19 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ static int	copy_matrix_to_int(t_node *tool, int cy, int iy)
 		{
 			while (tool->char_matrix[cy][cx] == ' ')
 				cx++;
+			if (tool->char_matrix[cy][cx] == '\0')
+				break ;
 			if (check_atoi_overflow(&tool->char_matrix[cy][cx]) == -1)
 				return (-1);
 			tool->int_matrix[iy][ix] = ft_atoi(&tool->char_matrix[cy][cx]);
@@ -94,7 +96,7 @@ static void	create_int_matrix(t_node *tool)
 	while (index < tool->height)
 	{
 		tool->int_matrix[index] = (int *)malloc(sizeof(int) * tool->width);
-		if (tool->int_matrix == NULL)
+		if (tool->int_matrix[index] == NULL)
 			error_exit_free(tool);
 		ft_bzero((int *)tool->int_matrix[index], tool->width);
 		index++;
