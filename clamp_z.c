@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   clamp_z.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 22:25:55 by raho              #+#    #+#             */
-/*   Updated: 2022/08/01 18:32:15 by raho             ###   ########.fr       */
+/*   Created: 2022/08/01 17:55:57 by raho              #+#    #+#             */
+/*   Updated: 2022/08/01 18:03:54 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	main(int argc, char *argv[])
+void	clamp_z(t_node *tool)
 {
-	t_node	tool;
-	int		fd;
-	int		result;
+	int	y;
+	int	x;
 
-	fd = 0;
-	if (argc == 2)
+	y = 0;
+	while (y < tool->height)
 	{
-		initialize_struct(&tool, argv[1]);
-		fd = open_map(&tool);
-		result = handle_input(fd, &tool);
-		close_map(fd, &tool);
-		if (result == -1)
-			ft_putendl_fd("Bad map", 2);
-		else
+		x = 0;
+		while (x < tool->width)
 		{
-			clamp_z(&tool);
-			do_events(&tool);
+			if (tool->int_matrix[y][x] > 50000)
+				tool->int_matrix[y][x] = 50000;
+			if (tool->int_matrix[y][x] < -50000)
+				tool->int_matrix[y][x] = 50000;
+			x++;
 		}
-		free_all(&tool);
+		y++;
 	}
-	else
-		ft_putendl_fd("usage: ./fdf map_file", 2);
-	return (0);
 }

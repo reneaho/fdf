@@ -6,7 +6,7 @@
 #    By: raho <raho@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 18:17:08 by raho              #+#    #+#              #
-#    Updated: 2022/07/25 12:41:46 by raho             ###   ########.fr        #
+#    Updated: 2022/08/01 18:43:53 by raho             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ MLXINCL = /usr/local/include
 FDFINCL = ./
 SRCS = main.c do_events.c free_all.c initialize_struct.c handle_input.c \
 		handle_file.c draw_line.c draw_map.c rotation_matrix.c keybinds_0.c \
-		keybinds_1.c draw_one.c image_pixel_put.c file_checks.c
+		keybinds_1.c draw_one.c image_pixel_put.c file_checks.c clamp_z.c
 OBJS = $(SRCS:.c=.o)
 MLXLINK = -lmlx -framework OpenGL -framework Appkit
 

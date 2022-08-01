@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:30:39 by raho              #+#    #+#             */
-/*   Updated: 2022/07/25 13:21:19 by raho             ###   ########.fr       */
+/*   Updated: 2022/08/01 18:29:21 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,31 +56,31 @@ static int	save_map(t_node *tool, int fd, char *line)
 	return (gnl);
 }
 
-static int	copy_matrix_to_int(t_node *tool, int cy, int iy)
+static int	copy_matrix_to_int(t_node *tool, int y, int cx)
 {
-	int	cx;
 	int	ix;
 
-	while (cy < tool->height)
+	while (y < tool->height)
 	{
 		cx = 0;
 		ix = 0;
-		while (tool->char_matrix[cy][cx] != '\0')
+		while (tool->char_matrix[y][cx] != '\0')
 		{
-			while (tool->char_matrix[cy][cx] == ' ')
+			while (tool->char_matrix[y][cx] == ' ' || \
+					tool->char_matrix[y][cx] == '\t')
 				cx++;
-			if (tool->char_matrix[cy][cx] == '\0')
+			if (tool->char_matrix[y][cx] == '\0')
 				break ;
-			if (check_atoi_overflow(&tool->char_matrix[cy][cx]) == -1)
+			if (check_atoi_overflow(&tool->char_matrix[y][cx]) == -1)
 				return (-1);
-			tool->int_matrix[iy][ix] = ft_atoi(&tool->char_matrix[cy][cx]);
-			while (tool->char_matrix[cy][cx] != '\0' && \
-					tool->char_matrix[cy][cx] != ' ')
+			tool->int_matrix[y][ix] = ft_atoi(&tool->char_matrix[y][cx]);
+			while (tool->char_matrix[y][cx] != '\0' && \
+					(tool->char_matrix[y][cx] != ' ' && \
+					tool->char_matrix[y][cx] != '\t'))
 				cx++;
 			ix++;
 		}
-		cy++;
-		iy++;
+		y++;
 	}
 	return (0);
 }
@@ -115,7 +115,7 @@ int	handle_input(int fd, t_node *tool)
 	create_char_matrix(tool);
 	if (save_map(tool, fd, line) == -1)
 		return (-1);
-	if (check_content(tool) == -1)
+	if (check_content(tool, 0) == -1)
 		return (-1);
 	create_int_matrix(tool);
 	if (copy_matrix_to_int(tool, 0, 0) == -1)

@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:17:11 by raho              #+#    #+#             */
-/*   Updated: 2022/07/25 13:14:12 by raho             ###   ########.fr       */
+/*   Updated: 2022/08/01 18:40:30 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@ static int	count_words(char *str)
 	counter = 0;
 	while (str[index] != '\0')
 	{
-		while (str[index] == ' ')
+		while (str[index] == ' ' || str[index] == '\t')
 			index++;
-		if (str[index] != '\0' && str[index] != ' ')
+		if (str[index] != '\0')
 		{
 			counter++;
-			while (str[index] != '\0' && str[index] != ' ')
+			while (str[index] != '\0' && str[index] != ' ' && \
+					str[index] != '\t')
 				index++;
 		}
 	}
@@ -67,17 +68,20 @@ int	check_lines(t_node *tool, int fd, char *line)
 			return (-1);
 		gnl = get_next_line(fd, &line);
 	}
+	if (line)
+	{
+		free(line);
+		line = NULL;
+	}
 	if (gnl == -1)
 		error_exit_free(tool);
 	return (gnl);
 }
 
-int	check_content(t_node *tool)
+int	check_content(t_node *tool, int y)
 {
 	int	x;
-	int	y;
 
-	y = 0;
 	while (y < tool->height)
 	{
 		x = 0;
@@ -85,6 +89,7 @@ int	check_content(t_node *tool)
 		{
 			if (((tool->char_matrix[y][x] != ' ' && \
 					tool->char_matrix[y][x] != '-' && \
+					tool->char_matrix[y][x] != '\t' && \
 					(tool->char_matrix[y][x] < 48 || \
 					tool->char_matrix[y][x] > 57)) && \
 					tool->char_matrix[y][x] != '\n') || \
