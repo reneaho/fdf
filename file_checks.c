@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:17:11 by raho              #+#    #+#             */
-/*   Updated: 2022/08/01 18:40:30 by raho             ###   ########.fr       */
+/*   Updated: 2022/08/05 21:39:28 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,26 +78,44 @@ int	check_lines(t_node *tool, int fd, char *line)
 	return (gnl);
 }
 
+static int	check_minus(t_node *tool, int y, int x)
+{
+	if (x == 0)
+	{
+		if (tool->char_matrix[y][x + 1] >= '0' && \
+			tool->char_matrix[y][x + 1] <= '9')
+			return (1);
+	}
+	else if (tool->char_matrix[y][x - 1] == ' ')
+	{
+		if (tool->char_matrix[y][x + 1] >= '0' && \
+			tool->char_matrix[y][x + 1] <= '9')
+			return (1);
+	}
+	return (0);
+}
+
 int	check_content(t_node *tool, int y)
 {
+	int	pass;
 	int	x;
 
 	while (y < tool->height)
 	{
 		x = 0;
-		while (x < tool->width)
+		while (tool->char_matrix[y][x] != '\0')
 		{
-			if (((tool->char_matrix[y][x] != ' ' && \
-					tool->char_matrix[y][x] != '-' && \
-					tool->char_matrix[y][x] != '\t' && \
-					(tool->char_matrix[y][x] < 48 || \
-					tool->char_matrix[y][x] > 57)) && \
-					tool->char_matrix[y][x] != '\n') || \
-					(tool->char_matrix[y][x] == '\n' && \
-					tool->char_matrix[y][x + 1] != '\0') || \
-					(tool->char_matrix[y][x] == '-' && \
-					(tool->char_matrix[y][x + 1] < 48 || \
-					tool->char_matrix[y][x + 1] > 57)))
+			pass = 0;
+			if (tool->char_matrix[y][x] == ' ')
+				pass = 1;
+			if (tool->char_matrix[y][x] == '\t')
+				pass = 1;
+			if (tool->char_matrix[y][x] == '-')
+				pass = check_minus(tool, y, x);
+			if (tool->char_matrix[y][x] >= '0' && \
+				tool->char_matrix[y][x] <= '9')
+				pass = 1;
+			if (pass == 0)
 				return (-1);
 			x++;
 		}

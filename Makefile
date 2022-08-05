@@ -6,7 +6,7 @@
 #    By: raho <raho@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 18:17:08 by raho              #+#    #+#              #
-#    Updated: 2022/08/01 18:43:53 by raho             ###   ########.fr        #
+#    Updated: 2022/08/05 21:40:21 by raho             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ $(NAME): $(LIB) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIB) -I $(LIBFTINCL) -I $(MLXINCL) \
 	-I $(FDFINCL) $(MLXLINK) -o $(NAME)
 
-$(LIB):
+$(LIB): $(wildcard libft/*.c)
 	make -C libft
 
 clean:
