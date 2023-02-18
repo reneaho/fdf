@@ -6,7 +6,7 @@
 #    By: raho <raho@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/04 18:25:17 by raho              #+#    #+#              #
-#    Updated: 2022/07/21 14:03:54 by raho             ###   ########.fr        #
+#    Updated: 2022/07/22 19:28:05 by raho             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 	ft_putstr.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c \
 	ft_putendl_fd.c ft_putnbr_fd.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c \
 	ft_lstadd.c ft_lstiter.c ft_lstmap.c get_next_line.c ft_roundup.c \
-	ft_sqrtf.c ft_arrappchar.c ft_getnbr.c ft_fabs.c ft_split_whitespaces.c
+	ft_sqrtf.c ft_arrappchar.c ft_getnbr.c ft_fabs.c ft_split_whitespaces.c \
+	ft_check_atoi_overflow.c
 OBJS = $(SRCS:.c=.o)
 
 .PHONY: all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:15:26 by raho              #+#    #+#             */
-/*   Updated: 2022/07/19 15:28:52 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/25 17:36:51 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ typedef struct s_node
 	int		width_check;
 	char	**char_matrix;
 	int		**int_matrix;
-	int		lowest;
-	int		highest;
 	float	x;
 	float	y;
 	float	deltax;
@@ -111,7 +109,7 @@ int		open_map(t_node *tool);
 void	close_map(int fd, t_node *tool);
 int		handle_input(int fd, t_node *tool);
 int		check_lines(t_node *tool, int fd, char *line);
-int		check_content(t_node *tool);
+int		check_content(t_node *tool, int y);
 int		check_atoi_overflow(char *str);
 void	clamp_z(t_node *tool);
 void	do_events(t_node *tool);
@@ -125,6 +123,7 @@ void	erase_map(t_node *tool);
 void	keybinds_0(t_node *tool);
 void	keybinds_1(t_node *tool);
 void	reinitialize_struct(t_node *tool);
+void	error_exit_free(t_node *tool);
 void	free_all(t_node *tool);
 
 #endif

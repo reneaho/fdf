@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:17:11 by raho              #+#    #+#             */
-/*   Updated: 2022/07/18 15:02:27 by raho             ###   ########.fr       */
+/*   Updated: 2022/08/01 18:40:30 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,35 @@ static int	count_words(char *str)
 	counter = 0;
 	while (str[index] != '\0')
 	{
-		while (str[index] == ' ')
+		while (str[index] == ' ' || str[index] == '\t')
 			index++;
-		if (str[index] != '\0' && str[index] != ' ')
+		if (str[index] != '\0')
 		{
 			counter++;
-			while (str[index] != '\0' && str[index] != ' ')
+			while (str[index] != '\0' && str[index] != ' ' && \
+					str[index] != '\t')
 				index++;
 		}
 	}
 	return (counter);
+}
+
+static int	check_lines_helper(t_node *tool, char **line)
+{
+	tool->width_check = count_words(*line);
+	if (tool->width_check == 0 || tool->width_check != tool->width)
+	{
+		free(*line);
+		*line = NULL;
+		return (-1);
+	}
+	tool->height = tool->height + 1;
+	if (*line)
+	{
+		free(*line);
+		*line = NULL;
+	}
+	return (0);
 }
 
 int	check_lines(t_node *tool, int fd, char *line)
@@ -38,68 +57,39 @@ int	check_lines(t_node *tool, int fd, char *line)
 	int	gnl;
 
 	gnl = get_next_line(fd, &line);
+	if (gnl == -1)
+		error_exit_free(tool);
 	if (line == NULL)
 		return (-1);
 	tool->width = count_words(line);
 	while (gnl > 0)
 	{
-		tool->width_check = count_words(line);
-		if (tool->width_check == 0 || tool->width_check != tool->width)
-		{
-			free(line);
-			line = NULL;
+		if (check_lines_helper(tool, &line) == -1)
 			return (-1);
-		}
-		tool->height = tool->height + 1;
-		if (line)
-		{
-			free(line);
-			line = NULL;
-		}
 		gnl = get_next_line(fd, &line);
 	}
+	if (line)
+	{
+		free(line);
+		line = NULL;
+	}
+	if (gnl == -1)
+		error_exit_free(tool);
 	return (gnl);
 }
 
-int	check_atoi_overflow(char *str)
-{
-	int		i;
-	long	res;
-	int		sign;
-
-	i = 0;
-	res = 0;
-	sign = 1;
-	if (str[i] == '-')
-	{
-		sign = sign * -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = res * 10 + (str[i] - '0');
-		i++;
-	}
-	if (res > 2147483647 && sign == 1)
-		return (-1);
-	if (res > 2147483648 && sign == -1)
-		return (-1);
-	return (0);
-}
-
-int	check_content(t_node *tool)
+int	check_content(t_node *tool, int y)
 {
 	int	x;
-	int	y;
 
-	y = 0;
-	while (tool->char_matrix[y] != 0)
+	while (y < tool->height)
 	{
 		x = 0;
-		while (tool->char_matrix[y][x] != '\0')
+		while (x < tool->width)
 		{
 			if (((tool->char_matrix[y][x] != ' ' && \
 					tool->char_matrix[y][x] != '-' && \
+					tool->char_matrix[y][x] != '\t' && \
 					(tool->char_matrix[y][x] < 48 || \
 					tool->char_matrix[y][x] > 57)) && \
 					tool->char_matrix[y][x] != '\n') || \

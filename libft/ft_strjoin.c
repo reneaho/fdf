@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 20:05:07 by raho              #+#    #+#             */
-/*   Updated: 2021/11/29 17:11:45 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/25 13:16:51 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		new = (char *)malloc(sizeof(char) * (ft_strlen(s1) + \
 											ft_strlen(s2) + 1));
 		if (!new)
-			return (0);
+			return (NULL);
 		temp = new;
 		while (*s1 != '\0')
 			*new++ = *s1++;
@@ -31,5 +31,5 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		*new = '\0';
 		return (temp);
 	}
-	return (0);
+	return (NULL);
 }

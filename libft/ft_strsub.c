@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 20:03:21 by raho              #+#    #+#             */
-/*   Updated: 2021/11/25 01:23:43 by raho             ###   ########.fr       */
+/*   Updated: 2022/07/25 13:16:21 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	{
 		new = (char *)malloc(sizeof(char) * len + 1);
 		if (!new)
-			return (0);
+			return (NULL);
 		while (index < len)
 		{
 			new[index] = s[start];
@@ -32,5 +32,5 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 		new[index] = '\0';
 		return (new);
 	}
-	return (0);
+	return (NULL);
 }
