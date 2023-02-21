@@ -6,38 +6,37 @@
 #    By: raho <raho@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 18:17:08 by raho              #+#    #+#              #
-#    Updated: 2022/08/01 18:43:53 by raho             ###   ########.fr        #
+#    Updated: 2023/02/21 15:22:59 by raho             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
 LIB = libft/libft.a
-LIBFTINCL = libft/
 MLXLIB = /usr/local/lib
 MLXINCL = /usr/local/include
-FDFINCL = ./
-SRCS = main.c do_events.c free_all.c initialize_struct.c handle_input.c \
+SOURCE = main.c do_events.c free_all.c initialize_struct.c handle_input.c \
 		handle_file.c draw_line.c draw_map.c rotation_matrix.c keybinds_0.c \
 		keybinds_1.c draw_one.c image_pixel_put.c file_checks.c clamp_z.c
-OBJS = $(SRCS:.c=.o)
+SRC = $(addprefix source/,$(SOURCE))
+OBJ = $(SRC:.c=.o)
+INCLUDE = -Iinclude -I $(MLXINCL) -Ilibft
 MLXLINK = -lmlx -framework OpenGL -framework Appkit
+CFLAGS = -Wall -Wextra -Werror $(INCLUDE)
 
 .PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(NAME): $(LIB) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIB) -I $(LIBFTINCL) -I $(MLXINCL) \
-	-I $(FDFINCL) $(MLXLINK) -o $(NAME)
+$(NAME): $(LIB) $(OBJ)
+	$(CC) $(OBJ) $(LIB) $(INCLUDE) $(MLXLINK) -o $(NAME)
 
 $(LIB):
 	make -C libft
 
 clean:
 	make -C libft clean
-	rm -f $(OBJS)
+	rm -f $(OBJ)
 
 fclean: clean
 	make -C libft fclean

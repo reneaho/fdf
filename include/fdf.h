@@ -6,7 +6,7 @@
 /*   By: raho <raho@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:15:26 by raho              #+#    #+#             */
-/*   Updated: 2022/07/25 17:36:51 by raho             ###   ########.fr       */
+/*   Updated: 2023/02/21 15:23:50 by raho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@
 # define MAC_ENTER 36
 # define MAC_ESC 53
 
-# include "libft/libft.h"
+# include "libft.h"
 # include "mlx.h"
 # include <fcntl.h>
 # include <math.h>
