@@ -5,7 +5,7 @@ Rotate map: W A S D (up, left, down, right) E Q (clockwise, counterclockwise)\
 Decrease map XYZ dimensions: J I U\
 Increase map XYZ dimensions: L K O
 
-## how to run
+## How to run
 make\
 ./fdf maps/<map's_name>
 
