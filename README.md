@@ -1,4 +1,4 @@
-# fdf - Drawing 2D maps in 3D wireframes
+# fdf - Visualizing 2D Maps in 3D Wireframes
 The program takes a 2D array map as an argument and renders it with wireframes in 3D\
 Move map: Arrow keys\
 Rotate map: W A S D (up, left, down, right) E Q (clockwise, counterclockwise)\
