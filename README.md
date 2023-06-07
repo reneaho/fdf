@@ -2,7 +2,7 @@
 The program takes a 2D array map as an argument and renders it in 3D\
 Move map: Arrow keys\
 Rotate map: W A S D (up, left, down, right) E Q (clockwise, counterclockwise)\
-Decrease map XYZ dimensions: J I U
+Decrease map XYZ dimensions: J I U\
 Increase map XYZ dimensions: L K O
 
 ## how to run
