@@ -1,5 +1,5 @@
 # fdf - 2D map viewer in 3D space
-The program takes a 2D array map as an argument and renders it with wireframes in 3D space\
+The program takes a 2D array map as an argument and renders it with wireframes in 3D\
 Move map: Arrow keys\
 Rotate map: W A S D (up, left, down, right) E Q (clockwise, counterclockwise)\
 Decrease map XYZ dimensions: J I U\
